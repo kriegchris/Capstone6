@@ -1,5 +1,6 @@
 package co.grandcircus.Capstone6.model;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,10 +33,9 @@ public class Task {
 		this.completed = completed;
 	}
 	
-	public Task(String description, String date, boolean completed) {
+	public Task(String description, String date) {
 		this.description = description;
 		this.date = date;
-		this.completed = completed;
 	}
 
 	//Getter and setter methods
@@ -69,6 +69,14 @@ public class Task {
 	
 	public void setCompleted(boolean completed) {
 		this.completed = completed;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+	
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 	//Overloaded toString()

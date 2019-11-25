@@ -18,6 +18,7 @@
 			<h1>Welcome to Tasky!</h1>
 			<h2>A simple and faster way of keeping track of your To-Do's</h2>
 			<hr>
+			<h2>${login }</h2>
 			<form action="/login"  name="myForm" method="post" onsubmit="return validateEmail()">
 				Email: <input type="text" name="email" required><br>
 				Password: <input type="password" value="" id="myInput" name="password" required><br>

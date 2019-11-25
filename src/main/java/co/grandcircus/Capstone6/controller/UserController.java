@@ -33,7 +33,8 @@ public class UserController {
 			if (userInfo != null) {
 				if (user.getPassword().equals(userInfo.getPassword())) {
 					mv.addObject("message", "Welcome, " + userInfo.getName());
-					List<Task> tasks = tRepo.findAll();
+					mv.addObject("id", userInfo.getUserId());
+					List<Task> tasks = userInfo.getTasks();
 					mv.addObject("list", tasks);
 				} else {
 					mv.addObject("message", "Password is invalid. Please try again");
@@ -44,6 +45,19 @@ public class UserController {
 				mv.addObject("goBack", "<a href='/' class='btn btn-primary'>Go back</a>");
 				mv.addObject("register", "<a href='/register' class='btn btn-primary'>Register New User</a>");
 			}
+		return mv;
+	}
+	
+	@RequestMapping("/register")
+	public ModelAndView register() {
+		return new ModelAndView("register");
+	}
+	
+	@RequestMapping("/add-user")
+	public ModelAndView addUser(User user) {
+		uRepo.save(user);
+		ModelAndView mv = new ModelAndView("redirect:/");
+		mv.addObject("login", "<span style='color:red'>Please login with your new username and password</span>");
 		return mv;
 	}
 	

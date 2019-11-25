@@ -28,17 +28,19 @@ public class User {
 	public User() {
 	}
 	
-	public User(Integer userId, String name, String email, String password) {
+	public User(Integer userId, String name, String email, String password, List<Task> tasks) {
 		this.userId = userId;
 		this.name = name;
 		this.email = email;
 		this.password = password;
+		this.tasks = tasks;
 	}
 	
-	public User(String name, String email, String password) {
+	public User(String name, String email, String password, List<Task> tasks) {
 		this.name = name;
 		this.email = email;
 		this.password = password;
+		this.tasks = tasks;
 	}
 	
 	//Getter and Setter methods
@@ -72,6 +74,10 @@ public class User {
 	
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public List<Task> getTasks(){
+		return tasks;
 	}
 	
 	//Overloaded toString()

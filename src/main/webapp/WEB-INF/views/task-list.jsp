@@ -18,6 +18,14 @@
 			<h1>${message }.</h1>
 			${goBack } ${register }
 			<hr>
+			<h1>Add Task</h1>
+			<form action="/add-task">
+				<input type="hidden" name="userId" value="${id }">
+				Description: <input type="text" name="description" placeholder="description">
+				Date: <input type="date" name="date" placeholder="yyyy-mm-dd">
+				<input type="submit" class="btn btn-primary" value="Add Task">
+			</form>
+			<hr>
 			<h1>Task List</h1>
 			<table class="table">
 				<tr>

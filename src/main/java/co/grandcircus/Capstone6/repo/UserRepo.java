@@ -8,5 +8,5 @@ public interface UserRepo extends JpaRepository<User, Integer> {
 
 	//gets user info at login
 	User findByEmail(String email);
-	
+	User findByUserId(Integer userId);
 }
