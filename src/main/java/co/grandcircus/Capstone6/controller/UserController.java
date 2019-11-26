@@ -28,24 +28,28 @@ public class UserController {
 	
 	@RequestMapping("/login")
 	public ModelAndView userDash(User user) {
-		ModelAndView mv = new ModelAndView("task-list");
 			User userInfo = uRepo.findByEmail(user.getEmail());
 			if (userInfo != null) {
 				if (user.getPassword().equals(userInfo.getPassword())) {
+					ModelAndView mv = new ModelAndView("task-list");
 					mv.addObject("message", "Welcome, " + userInfo.getName());
 					mv.addObject("id", userInfo.getUserId());
 					List<Task> tasks = userInfo.getTasks();
 					mv.addObject("list", tasks);
+					return mv;
 				} else {
+					ModelAndView mv = new ModelAndView("sorry");
 					mv.addObject("message", "Password is invalid. Please try again");
 					mv.addObject("goBack", "<a href='/' class='btn btn-primary'>Go back</a>");
+					return mv;
 				}
 			} else {
-				mv.addObject("message", "Name not found please try again");
+				ModelAndView mv = new ModelAndView("sorry");
+				mv.addObject("message", "Name not found. Either register a new account or please try again");
 				mv.addObject("goBack", "<a href='/' class='btn btn-primary'>Go back</a>");
 				mv.addObject("register", "<a href='/register' class='btn btn-primary'>Register New User</a>");
+				return mv;
 			}
-		return mv;
 	}
 	
 	@RequestMapping("/register")

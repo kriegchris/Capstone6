@@ -28,6 +28,32 @@ public class TaskController {
 		task.setUser(user);
 		tRepo.save(task);
 		mv.addObject("list", user.getTasks());
+		mv.addObject("id", user.getUserId());
 		return mv;
 	}
+	
+	@RequestMapping("/complete")
+	public ModelAndView markComplete(Integer id) {
+		Task task = tRepo.findByTaskId(id);
+		User user = task.getUser();
+		ModelAndView mv = new ModelAndView("task-list", "message", "Welcome, " + user.getName());
+		task.setCompleted(true);
+		tRepo.save(task);
+		mv.addObject("list", user.getTasks());
+		mv.addObject("id", user.getUserId());
+		return mv;
+	}
+	
+	@RequestMapping("/delete")
+	public ModelAndView deleteTask(Integer id) {
+		Task task = tRepo.findByTaskId(id);
+		User user = task.getUser();
+		ModelAndView mv = new ModelAndView("task-list", "message", "Welcome, " + user.getName());
+		tRepo.delete(task);
+		mv.addObject("list", user.getTasks());
+		mv.addObject("id", user.getUserId());
+		return mv;
+		
+	}
+	
 }

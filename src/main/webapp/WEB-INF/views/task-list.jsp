@@ -16,7 +16,7 @@
 	<div class="container">
 		<div class="jumbotron">
 			<h1>${message }.</h1>
-			${goBack } ${register }
+			<a href="/" class="btn btn-primary">Logout</a>
 			<hr>
 			<h1>Add Task</h1>
 			<form action="/add-task">
@@ -29,23 +29,21 @@
 			<h1>Task List</h1>
 			<table class="table">
 				<tr>
-					<th>ID</th>
+					<th>Task#</th>
 					<th>Description</th>
 					<th>Due Date</th>
 					<th>Completed</th>
 					<th>Mark Done</th>
 					<th>Delete</th>
 				</tr>
-				<c:forEach var="t" items="${list }">
+				<c:forEach var="t" items="${list }" varStatus="i">
 					<tr>
-						<td>${t.taskId }</td>
+						<td>${i.count }</td>
 						<td>${t.description }</td>
 						<td>${t.date }</td>
 						<td>${t.completed }</td>
-						<td>*Add Link*</td>
-						<td>*Add Link*</td>
-						<%-- <td><a href="/complete?id=${f.id }" class="btn btn-primary">Mark Complete</a></td>
-						<td><a href="/delete?id=${t.id }" class="btn btn-primary">Delete</a></td> --%>
+						<td><a href="/complete?id=${t.taskId }" class="btn btn-primary">Mark Complete</a></td>
+						<td><a href="/delete?id=${t.taskId }" class="btn btn-primary">Delete</a></td>
 					</tr>
 				</c:forEach>
 			</table>
